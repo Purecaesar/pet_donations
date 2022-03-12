@@ -1,0 +1,17 @@
+version: '3.6'
+
+volumes:
+  pg_data:
+
+services:
+  postgres:
+    image: postgres:11.5-alpine
+    restart: always
+    volumes:
+      - 'pg_data:/var/lib/postgresql/data'
+    ports:
+      - 5555:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: pet_donation
