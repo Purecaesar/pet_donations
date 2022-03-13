@@ -1,0 +1,22 @@
+{
+  "root": "libs/typeorm",
+  "sourceRoot": "libs/typeorm/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/typeorm/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/typeorm"],
+      "options": {
+        "jestConfig": "libs/typeorm/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
