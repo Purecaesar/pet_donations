@@ -34,10 +34,6 @@ export class UserEntity {
   })
   public role: RoleEntity;
 
-  @OneToOne(() => KennelEntity)
-  @JoinColumn({
-    name: 'kennel_id',
-    referencedColumnName: 'id',
-  })
+  @OneToOne(() => KennelEntity, (kennel) => kennel.user)
   public kennel: KennelEntity;
 }

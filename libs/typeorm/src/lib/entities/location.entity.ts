@@ -9,7 +9,7 @@ export class LocationEntity {
   @PrimaryGeneratedColumn('increment')
   public id: number;
 
-  @OneToOne(() => KennelEntity)
+  @OneToOne(() => KennelEntity, (kennel) => kennel.location)
   public kennel: KennelEntity;
 
   @Column()

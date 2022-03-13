@@ -13,6 +13,10 @@ export class AppService {
     return this.userRepo.getAllUsers();
   }
 
+  public getUserById(id: number) {
+    return this.userRepo.findUserById(id);
+  }
+
   public getKennels() {
     return this.kennelRepo.getAllKennels();
   }

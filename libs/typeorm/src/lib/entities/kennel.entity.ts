@@ -8,7 +8,9 @@ import {
 } from 'typeorm';
 import { LocationEntity } from './location.entity';
 import { NewsEntity } from './news.entity';
-import {UserEntity} from "./user.entity";
+import { UserEntity } from './user.entity';
+import { PaymentDetailsEntity } from './payment-details.entity';
+import { KennelCrowdfundingEntity } from './kennel-crowdfunding.entity';
 
 @Entity({
   name: 'kennel',
@@ -34,7 +36,17 @@ export class KennelEntity {
   @OneToOne(() => UserEntity)
   @JoinColumn({
     name: 'user_id',
-    referencedColumnName: 'id'
+    referencedColumnName: 'id',
   })
   public user: UserEntity;
+
+  @OneToOne(() => PaymentDetailsEntity)
+  @JoinColumn({
+    name: 'payment_id',
+    referencedColumnName: 'id',
+  })
+  public paymentDetails: PaymentDetailsEntity;
+
+  @OneToMany(() => KennelCrowdfundingEntity, (cf) => cf.kennel)
+  public crowdfunding: KennelCrowdfundingEntity[];
 }

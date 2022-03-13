@@ -6,6 +6,8 @@ export * from './lib/entities/user.entity';
 export * from './lib/entities/available-action.entity';
 export * from './lib/entities/location.entity';
 export * from './lib/entities/news.entity';
+export * from './lib/entities/payment-details.entity';
+export * from './lib/entities/kennel-crowdfunding.entity';
 
 export * from './lib/repositories/user.repository';
 export * from './lib/repositories/kennel.repository';
