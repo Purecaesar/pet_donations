@@ -1,0 +1,5 @@
+<pd-news-card
+  class="news-card"
+  *ngFor="let post of news$ | async"
+  [news]="post"
+></pd-news-card>

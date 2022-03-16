@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/web/news",
+  "sourceRoot": "libs/web/news/src",
+  "prefix": "pet-donations",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/web/news"],
+      "options": {
+        "jestConfig": "libs/web/news/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/web/news/src/**/*.ts",
+          "libs/web/news/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

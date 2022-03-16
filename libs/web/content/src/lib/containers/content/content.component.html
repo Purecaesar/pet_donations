@@ -1,0 +1,24 @@
+<mat-toolbar class="toolbar" color="primary">
+  <section class="logo">
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Pet donations</span>
+  </section>
+  <button mat-icon-button (click)="onAccountClick()">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-drawer-container
+  class="example-container"
+  autosize
+  [hasBackdrop]="true"
+  (backdropClick)="drawer.close()"
+>
+  <mat-drawer #drawer class="side-nav" mode="over">
+    HELLO TEXT ASDHAHDAHSDHASDHAHSDH
+  </mat-drawer>
+  <main class="main-content">
+    <ng-content></ng-content>
+  </main>
+</mat-drawer-container>

@@ -12,6 +12,15 @@ export class KennelRepository {
     });
   }
 
+  public findKennelById(id: number) {
+    return this.repo.find({
+      where: {
+        id,
+      },
+      relations: ['user', 'news', 'location', 'paymentDetails', 'crowdfunding'],
+    });
+  }
+
   private get repo() {
     return this.connection.getRepository(KennelEntity);
   }

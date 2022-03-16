@@ -1,0 +1,28 @@
+{
+  "root": "libs/api/kennel",
+  "sourceRoot": "libs/api/kennel/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/api/kennel/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/api/kennel"
+      ],
+      "options": {
+        "jestConfig": "libs/api/kennel/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

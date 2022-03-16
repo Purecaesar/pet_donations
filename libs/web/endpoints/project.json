@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/web/endpoints",
+  "sourceRoot": "libs/web/endpoints/src",
+  "prefix": "pet-donations",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/web/endpoints"],
+      "options": {
+        "jestConfig": "libs/web/endpoints/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/web/endpoints/src/**/*.ts",
+          "libs/web/endpoints/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -17,9 +17,19 @@ export class UserEntity {
   public id: number;
 
   @Column()
-  public name: string;
+  public username: string;
 
   @Column()
+  public password: string;
+
+  @Column({
+    nullable: true,
+  })
+  public name: string;
+
+  @Column({
+    nullable: true,
+  })
   public surname: string;
 
   @Column({

@@ -15,7 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@pet-donations/typeorm": ["libs/typeorm/src/index.ts"]
+      "@pet-donations/api/kennel": ["libs/api/kennel/src/index.ts"],
+      "@pet-donations/api/news": ["libs/api/news/src/index.ts"],
+      "@pet-donations/api/user": ["libs/api/user/src/index.ts"],
+      "@pet-donations/interfaces": ["libs/interfaces/src/index.ts"],
+      "@pet-donations/typeorm": ["libs/typeorm/src/index.ts"],
+      "@pet-donations/web/content": ["libs/web/content/src/index.ts"],
+      "@pet-donations/web/endpoints": ["libs/web/endpoints/src/index.ts"],
+      "@pet-donations/web/news": ["libs/web/news/src/index.ts"],
+      "@pet-donations/web/user": ["libs/web/user/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

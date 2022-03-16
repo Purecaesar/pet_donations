@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.actions {
+  margin-top: auto;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 0;
+}

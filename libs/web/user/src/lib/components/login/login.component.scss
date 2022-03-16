@@ -1,0 +1,12 @@
+:host {
+  min-height: 200px;
+  display: flex;
+}
+
+.login-form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+}

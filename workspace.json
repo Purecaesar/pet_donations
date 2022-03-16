@@ -2,7 +2,15 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "api-kennel": "libs/api/kennel",
+    "api-news": "libs/api/news",
+    "api-user": "libs/api/user",
+    "interfaces": "libs/interfaces",
     "typeorm": "libs/typeorm",
-    "web": "apps/web"
+    "web": "apps/web",
+    "web-content": "libs/web/content",
+    "web-endpoints": "libs/web/endpoints",
+    "web-news": "libs/web/news",
+    "web-user": "libs/web/user"
   }
 }

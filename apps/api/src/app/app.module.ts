@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeormModule } from '@pet-donations/typeorm';
 import { getMetadataArgsStorage } from 'typeorm';
+import { ApiKennelModule } from '@pet-donations/api/kennel';
+import { ApiNewsModule } from '@pet-donations/api/news';
+import { ApiUserModule } from '@pet-donations/api/user';
+
+const APP_MODULES = [ApiKennelModule, ApiNewsModule, ApiUserModule];
 
 @Module({
   imports: [
@@ -19,8 +22,7 @@ import { getMetadataArgsStorage } from 'typeorm';
       synchronize: true,
     }),
     TypeormModule,
+    ...APP_MODULES,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

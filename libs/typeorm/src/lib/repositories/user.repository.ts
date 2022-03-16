@@ -21,6 +21,25 @@ export class UserRepository {
     });
   }
 
+  public getUsersByQuery(where: Partial<Record<keyof UserEntity, string | number>>[]) {
+    return this.repo.find({
+      where
+    });
+  }
+
+  public getUserByQuery(where: Partial<Record<keyof UserEntity, string | number>>[]) {
+    return this.repo.findOne({
+      where,
+      relations: [
+        'role',
+        'kennel',
+        'role.availableActions',
+        'kennel.news',
+        'kennel.location',
+      ],
+    });
+  }
+
   public getAllUsers() {
     return this.repo.find({
       relations: [
@@ -31,6 +50,10 @@ export class UserRepository {
         'kennel.location',
       ],
     });
+  }
+
+  public createUser(user: Partial<UserEntity>) {
+    return this.repo.save(user);
   }
 
   private get repo() {

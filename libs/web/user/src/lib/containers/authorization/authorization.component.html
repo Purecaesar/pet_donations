@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>{{ tabIndex === 0 ? 'Login' : 'Registration' }}</h2>
+<mat-dialog-content>
+  <mat-progress-bar class="progress-bar" *ngIf="isLoading$ | async"></mat-progress-bar>
+  <mat-tab-group [(selectedIndex)]="tabIndex" animationDuration="0">
+    <mat-tab label="Login">
+      <pd-login *ngIf="tabIndex === 0" [(form)]="loginData"></pd-login>
+    </mat-tab>
+    <mat-tab label="Registration">
+      <pd-registration
+        *ngIf="tabIndex === 1"
+        [(form)]="registrationData"
+      ></pd-registration>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="actions">
+  <button mat-button [mat-dialog-close]="false">Close</button>
+  <button
+    *ngIf="tabIndex === 0"
+    mat-raised-button
+    [disabled]="!loginData"
+    (click)="onProceed(loginData)"
+    color="primary"
+  >
+    Proceed
+  </button>
+  <button
+    *ngIf="tabIndex === 1"
+    mat-raised-button
+    [disabled]="!registrationData"
+    (click)="onProceed(registrationData)"
+    color="primary"
+  >
+    Register
+  </button>
+</mat-dialog-actions>
