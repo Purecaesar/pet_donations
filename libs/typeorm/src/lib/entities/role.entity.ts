@@ -4,8 +4,10 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
   JoinTable,
+  OneToMany,
 } from 'typeorm';
 import { AvailableActionEntity } from './available-action.entity';
+import { UserEntity } from './user.entity';
 
 @Entity({
   name: 'role',
@@ -26,4 +28,7 @@ export class RoleEntity {
   @ManyToMany(() => AvailableActionEntity)
   @JoinTable()
   public availableActions: AvailableActionEntity[];
+
+  @OneToMany(() => UserEntity, (user) => user.role)
+  public users: UserEntity[];
 }

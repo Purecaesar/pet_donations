@@ -1,3 +1,5 @@
+import {SimpleEntity} from "../interfaces/simple-entity.interface";
+
 export class User {
   public id!: number
   public username!: string;
@@ -8,6 +10,7 @@ export class User {
     id: number;
     description: string;
     name: string;
+    availableActions: (SimpleEntity & { description: string })[];
   };
 
   constructor(userData: User) {

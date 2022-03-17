@@ -10,8 +10,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RegistrationComponent } from './components/registration/registration.component';
-import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { UserService } from './services/user.service';
+import { AvailableActionsDirective } from './directives/available-actions.directive';
 
 @NgModule({
   imports: [
@@ -27,7 +29,13 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatSnackBarModule,
     MatProgressBarModule,
   ],
-  declarations: [AuthorizationComponent, LoginComponent, RegistrationComponent],
-  exports: [AuthorizationComponent],
+  providers: [UserService],
+  declarations: [
+    AuthorizationComponent,
+    LoginComponent,
+    RegistrationComponent,
+    AvailableActionsDirective,
+  ],
+  exports: [AuthorizationComponent, AvailableActionsDirective],
 })
 export class WebUserModule {}

@@ -1,0 +1,30 @@
+<section class="dialog-header">
+  <h2 mat-dialog-title>Donate to {{ donateDialogData.kennelName }}</h2>
+  <h3><span>Mission:</span> {{ donateDialogData.cfName }}</h3>
+</section>
+<mat-dialog-content>
+  <mat-progress-bar
+    *ngIf="loading$ | async"
+    mode="indeterminate"
+  ></mat-progress-bar>
+  <mat-form-field class="donate-field">
+    <mat-label>Donate amount</mat-label>
+    <input
+      [formControl]="donateAmount"
+      matInput
+      placeholder="Minimum $5"
+      type="number"
+    >
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="this.donateAmount.invalid"
+    (click)="donate()"
+  >
+    Donate
+  </button>
+</mat-dialog-actions>

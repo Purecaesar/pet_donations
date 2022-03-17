@@ -13,3 +13,4 @@ export * from './lib/repositories/user.repository';
 export * from './lib/repositories/kennel.repository';
 export * from './lib/repositories/news.repository';
 export * from './lib/repositories/role.repository';
+export * from './lib/repositories/crowdfunding.repository';

@@ -7,6 +7,10 @@ const ROUTES: Routes = [
     loadChildren: () => import('@pet-donations/web/news').then(m => m.WebNewsModule),
   },
   {
+   path: 'crowdfunding',
+    loadChildren: () => import('@pet-donations/web/crowdfunding').then(m => m.CrowdfundingRouterModule),
+  },
+  {
     path: '**',
     redirectTo: 'news',
   },

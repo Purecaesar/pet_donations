@@ -1,0 +1,22 @@
+{
+  "root": "libs/api/crowdfunding",
+  "sourceRoot": "libs/api/crowdfunding/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/crowdfunding/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/crowdfunding"],
+      "options": {
+        "jestConfig": "libs/api/crowdfunding/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

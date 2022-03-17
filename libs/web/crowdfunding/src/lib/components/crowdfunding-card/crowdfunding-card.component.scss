@@ -1,0 +1,33 @@
+.money-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+}
+
+.progress-bar {
+  height: 20px;
+  border-radius: 4px;
+}
+
+.status-text {
+  text-align: start;
+  font-size: 14px;
+  color: lighten(black, 46);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  & > span {
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
+  }
+}
+
+.donate-button {
+  height: 35px;
+  margin-left: auto;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}

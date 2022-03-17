@@ -3,7 +3,7 @@ import {
   Entity,
   OneToOne,
   PrimaryGeneratedColumn,
-  JoinColumn,
+  JoinColumn, ManyToOne,
 } from 'typeorm';
 import { RoleEntity } from './role.entity';
 import { KennelEntity } from './kennel.entity';
@@ -37,7 +37,7 @@ export class UserEntity {
   })
   public email: string;
 
-  @OneToOne(() => RoleEntity)
+  @ManyToOne(() => RoleEntity)
   @JoinColumn({
     name: 'role_id',
     referencedColumnName: 'id',

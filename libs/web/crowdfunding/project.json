@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/web/crowdfunding",
+  "sourceRoot": "libs/web/crowdfunding/src",
+  "prefix": "pet-donations",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/web/crowdfunding"],
+      "options": {
+        "jestConfig": "libs/web/crowdfunding/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/web/crowdfunding/src/**/*.ts",
+          "libs/web/crowdfunding/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

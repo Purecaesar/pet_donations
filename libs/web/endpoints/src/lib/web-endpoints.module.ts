@@ -6,6 +6,14 @@ import { ApiService } from './services/api.service';
 import { KennelApiService } from './services/kennel-api.service';
 import { NewsApiService } from './services/news-api.service';
 import { UserApiService } from './services/user-api.service';
+import { CrowdfundingApiService } from './services/crowdfunding-api.service';
+
+const apiServices = [
+  KennelApiService,
+  NewsApiService,
+  UserApiService,
+  CrowdfundingApiService,
+];
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
@@ -18,9 +26,7 @@ export class WebEndpointsModule {
       ngModule: WebEndpointsModule,
       providers: [
         ApiService,
-        KennelApiService,
-        NewsApiService,
-        UserApiService,
+        ...apiServices,
         {
           provide: API_DOMAIN_PROVIDER,
           useFactory: () => apiDomain,

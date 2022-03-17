@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { UserApiService } from '@pet-donations/web/endpoints';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RegistrationForm } from '../models/registration-form.interface';
 import { LoginForm } from '../models/login-form.interface';
 import { UserDataDto } from '@pet-donations/interfaces';
 import { BehaviorSubject, finalize } from 'rxjs';
-import { AuthorizationComponent } from '@pet-donations/web/user';
+import { UserService } from './user.service';
 
 @Injectable()
 export class AuthorizationControllerService {
@@ -14,26 +12,27 @@ export class AuthorizationControllerService {
   public readonly isLoading$ = this.isLoadingTrigger$.asObservable();
 
   constructor(
-    private readonly dialogRef: MatDialogRef<AuthorizationComponent>,
-    private readonly userApi: UserApiService,
-    private readonly snackBar: MatSnackBar
+    private readonly snackBar: MatSnackBar,
+    private readonly userService: UserService
   ) {}
 
   public onProceed(
     formData: RegistrationForm | LoginForm | null,
-    tabIndex: number
+    tabIndex: number,
+    cb: () => void
   ) {
     if (!formData) return;
     this.isLoadingTrigger$.next(true);
 
     const obs =
       tabIndex === 1
-        ? this.userApi.createUser(formData as UserDataDto)
-        : this.userApi.loginUser(formData as LoginForm);
+        ? this.userService.registerUser(formData as UserDataDto)
+        : this.userService.login(formData as LoginForm);
 
     obs.pipe(finalize(() => this.isLoadingTrigger$.next(false))).subscribe({
-      next: (user) => this.dialogRef.close(user),
-      error: (err) => this.snackBar.open(err.message),
+      next: (user) => cb(),
+      error: ({ error }) =>
+        this.snackBar.open(error.message, '', { duration: 2000 }),
     });
   }
 }

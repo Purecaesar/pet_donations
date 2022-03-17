@@ -31,6 +31,12 @@ export class KennelCrowdfundingEntity {
   @Column()
   public description: string;
 
+  @Column({
+    type: 'date',
+    default: () => 'now()',
+  })
+  public date: string;
+
   @ManyToOne(() => KennelEntity)
   @JoinColumn({
     name: 'kennel_id',

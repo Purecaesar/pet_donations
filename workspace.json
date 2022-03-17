@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "api-crowdfunding": "libs/api/crowdfunding",
     "api-kennel": "libs/api/kennel",
     "api-news": "libs/api/news",
     "api-user": "libs/api/user",
@@ -9,6 +10,7 @@
     "typeorm": "libs/typeorm",
     "web": "apps/web",
     "web-content": "libs/web/content",
+    "web-crowdfunding": "libs/web/crowdfunding",
     "web-endpoints": "libs/web/endpoints",
     "web-news": "libs/web/news",
     "web-user": "libs/web/user"

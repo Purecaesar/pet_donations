@@ -6,8 +6,14 @@ import { getMetadataArgsStorage } from 'typeorm';
 import { ApiKennelModule } from '@pet-donations/api/kennel';
 import { ApiNewsModule } from '@pet-donations/api/news';
 import { ApiUserModule } from '@pet-donations/api/user';
+import { ApiCrowdfundingModule } from '@pet-donations/api/crowdfunding';
 
-const APP_MODULES = [ApiKennelModule, ApiNewsModule, ApiUserModule];
+const APP_MODULES = [
+  ApiKennelModule,
+  ApiNewsModule,
+  ApiUserModule,
+  ApiCrowdfundingModule,
+];
 
 @Module({
   imports: [

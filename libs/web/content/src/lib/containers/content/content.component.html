@@ -3,12 +3,30 @@
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
+    <img alt="logo" class="logo-img" [src]="logoSrc">
     <span>Pet donations</span>
   </section>
-  <button mat-icon-button (click)="onAccountClick()">
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
     <mat-icon>account_circle</mat-icon>
   </button>
 </mat-toolbar>
+
+<mat-menu class="content-user-menu" [hasBackdrop]="true" #userMenu>
+  <ng-container *ngIf="user$ | async as user else logoutButton">
+    <ng-container *ngIf="user">
+      <h2 class="username-title">{{ user.username }}</h2>
+      <button mat-menu-item>User profile</button>
+      <button mat-menu-item class="delimiter" (click)="onLogout()">
+        Logout
+      </button>
+    </ng-container>
+  </ng-container>
+</mat-menu>
+
+<ng-template #logoutButton>
+  <button mat-menu-item (click)="onLogin()">Login</button>
+</ng-template>
+
 <mat-drawer-container
   class="example-container"
   autosize
@@ -16,7 +34,19 @@
   (backdropClick)="drawer.close()"
 >
   <mat-drawer #drawer class="side-nav" mode="over">
-    HELLO TEXT ASDHAHDAHSDHASDHAHSDH
+    <mat-selection-list
+      [ngModel]="currentRoute$ | async"
+      (ngModelChange)="onNavigate($event); drawer.close()"
+      [multiple]="false"
+    >
+      <mat-list-option
+        class="nav-list-option"
+        *ngFor="let route of routes"
+        [value]="route.route"
+      >
+        {{ route.name }}
+      </mat-list-option>
+    </mat-selection-list>
   </mat-drawer>
   <main class="main-content">
     <ng-content></ng-content>

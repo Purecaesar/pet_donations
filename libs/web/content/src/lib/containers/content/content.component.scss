@@ -12,6 +12,11 @@
   margin: 88px auto 0;
 }
 
+.logo-img {
+  width: 48px;
+  margin: 8px;
+}
+
 .logo {
   display: flex;
   justify-content: center;
@@ -24,5 +29,20 @@
 
 .side-nav {
   padding-top: 64px;
+  width: 300px;
+}
 
+.username-title {
+  text-align: center;
+}
+
+.nav-list-option {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.delimiter {
+  border-top: black 1px solid;
 }
