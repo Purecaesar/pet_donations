@@ -21,6 +21,10 @@ export class UserRepository {
     });
   }
 
+  public findUserEntityById(id: number) {
+    return this.repo.findOne({ id });
+  }
+
   public getUsersByQuery(where: Partial<Record<keyof UserEntity, string | number>>[]) {
     return this.repo.find({
       where
@@ -54,6 +58,10 @@ export class UserRepository {
 
   public createUser(user: Partial<UserEntity>) {
     return this.repo.save(user);
+  }
+
+  public updateUser(id: number, user: Partial<UserEntity>) {
+    return this.repo.update({ id }, user);
   }
 
   private get repo() {

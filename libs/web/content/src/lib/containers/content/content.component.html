@@ -3,19 +3,27 @@
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <img alt="logo" class="logo-img" [src]="logoSrc">
-    <span>Pet donations</span>
+    <img alt="logo" class="logo-img" [src]="logoSrc" >
+    <span>Pet Donations</span>
   </section>
   <button mat-icon-button [matMenuTriggerFor]="userMenu">
-    <mat-icon>account_circle</mat-icon>
+    <ng-container *ngIf="user$ | async as user; else emptyAvatar">
+      <img
+        class="user-avatar"
+        alt="avatar"
+        *ngIf="user?.avatar; else emptyAvatar"
+        [src]="user.avatar"
+      >
+    </ng-container>
   </button>
 </mat-toolbar>
 
 <mat-menu class="content-user-menu" [hasBackdrop]="true" #userMenu>
-  <ng-container *ngIf="user$ | async as user else logoutButton">
+  <ng-container *ngIf="user$ | async as user; else logoutButton">
     <ng-container *ngIf="user">
       <h2 class="username-title">{{ user.username }}</h2>
-      <button mat-menu-item>User profile</button>
+      <button mat-menu-item (click)="onUserProfileClick()">User profile</button>
+      <button mat-menu-item *pdAvailableActions="'create kennels'" (click)="onEditKennelClick()">Edit kennel</button>
       <button mat-menu-item class="delimiter" (click)="onLogout()">
         Logout
       </button>
@@ -25,6 +33,10 @@
 
 <ng-template #logoutButton>
   <button mat-menu-item (click)="onLogin()">Login</button>
+</ng-template>
+
+<ng-template #emptyAvatar>
+  <mat-icon>account_circle</mat-icon>
 </ng-template>
 
 <mat-drawer-container

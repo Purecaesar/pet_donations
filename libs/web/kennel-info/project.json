@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/web/kennel-info",
+  "sourceRoot": "libs/web/kennel-info/src",
+  "prefix": "pet-donations",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/web/kennel-info"],
+      "options": {
+        "jestConfig": "libs/web/kennel-info/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/web/kennel-info/src/**/*.ts",
+          "libs/web/kennel-info/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,122 @@
+<mat-card *ngIf="kennel$ | async as kennel; else createKennel">
+  <header>
+    <div class="photo">
+      <img *ngIf="kennel.avatarUrl" [src]="kennel.avatarUrl" alt="avatar" />
+      <mat-icon *ngIf="!kennel.avatarUrl">pets</mat-icon>
+    </div>
+    <div class="kennel-info">
+      <h2>{{ kennel.name }}</h2>
+      <h5>{{ kennel.description }}</h5>
+      <div class="publish-section">
+        <button mat-raised-button color="primary">Publish news</button>
+        <button mat-raised-button color="primary">Create crowdfunding</button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <form class="main-form" [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Avatar URL</mat-label>
+        <input matInput formControlName="avatarUrl" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+      <section
+        *ngIf="form.get('location'); else addLocation"
+        formGroupName="location"
+        class="main-form additional-section"
+      >
+        <div class="remove-button">
+          <button mat-button color="primary" (click)="onRemoveLocation()">
+            <mat-icon>remove_circle</mat-icon>
+          </button>
+        </div>
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" />
+        </mat-form-field>
+      </section>
+      <section
+        *ngIf="form.get('paymentDetails'); else addPayment"
+        formGroupName="paymentDetails"
+        class="main-form additional-section"
+      >
+        <div class="remove-button">
+          <button mat-button color="primary" (click)="onRemovePayment()">
+            <mat-icon>remove_circle</mat-icon>
+          </button>
+        </div>
+        <mat-form-field>
+          <mat-label>Bank Name</mat-label>
+          <input matInput formControlName="bankName" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Bank BIK</mat-label>
+          <input matInput formControlName="bankBik" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Bank INN</mat-label>
+          <input matInput formControlName="bankInn" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Kennel INN</mat-label>
+          <input matInput formControlName="kennelInn" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Kennel Bank Account</mat-label>
+          <input matInput formControlName="kennelAccountNumber" />
+        </mat-form-field>
+      </section>
+    </form>
+  </main>
+  <mat-card-actions align="end">
+    <button mat-button>Reset</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="this.form.invalid"
+      (click)="onSave()"
+    >
+      Save
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<ng-template #addLocation>
+  <button
+    class="add-button"
+    mat-raised-button
+    color="primary"
+    (click)="onAddLocation()"
+  >
+    <mat-icon>add</mat-icon>Add location
+  </button>
+</ng-template>
+
+<ng-template #addPayment>
+  <button
+    class="add-button"
+    mat-raised-button
+    color="primary"
+    (click)="onAddPayment()"
+  >
+    <mat-icon>add</mat-icon>Add payment
+  </button>
+</ng-template>
+
+<ng-template #createKennel>
+  <button mat-raised-button color="primary" (click)="onCreateClick()">
+    <mat-icon>add</mat-icon>
+    Create Kennel
+  </button>
+</ng-template>

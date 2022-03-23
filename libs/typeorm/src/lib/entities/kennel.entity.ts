@@ -23,6 +23,16 @@ export class KennelEntity {
   @Column()
   public name: string;
 
+  @Column({
+    nullable: true
+  })
+  public avatar: string;
+
+  @Column({
+    nullable: true
+  })
+  public description: string;
+
   @OneToOne(() => LocationEntity)
   @JoinColumn({
     name: 'location_id',

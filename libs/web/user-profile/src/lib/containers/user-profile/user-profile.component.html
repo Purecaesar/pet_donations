@@ -1,0 +1,48 @@
+<mat-card *ngIf="user$ | async as user">
+  <header>
+    <div class="photo">
+      <img *ngIf="user.avatar" [src]="user.avatar" alt="avatar">
+      <mat-icon *ngIf="!user.avatar">person</mat-icon>
+    </div>
+    <div class="user-info">
+      <h2>{{ user.name }} {{ user.surname }}</h2>
+      <h5>{{ user.email }}</h5>
+    </div>
+  </header>
+  <main>
+    <form class="main-form" [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Surname</mat-label>
+        <input matInput formControlName="surname">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Avatar URL</mat-label>
+        <input matInput formControlName="avatarUrl">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role">
+          <mat-option *ngFor="let role of roles$ | async" [value]="role.id">{{
+            role.name | titlecase
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </main>
+  <mat-card-actions align="end">
+    <button mat-button (click)="onResetClick()">Reset</button>
+    <button mat-raised-button color="primary" (click)="onSaveClick()">Save</button>
+  </mat-card-actions>
+</mat-card>

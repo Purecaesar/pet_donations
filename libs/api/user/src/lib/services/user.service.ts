@@ -1,6 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { RoleRepository, UserRepository } from '@pet-donations/typeorm';
 import { LoginUserDataDto, User, UserDataDto } from '@pet-donations/interfaces';
+import { Role } from '@pet-donations/interfaces';
+import { UserInfoDto } from '@pet-donations/interfaces';
 
 @Injectable()
 export class UserService {
@@ -11,6 +13,24 @@ export class UserService {
 
   public getUserById(id: number) {
     return this.userRepo.findUserById(id);
+  }
+
+  public async updateUserInfo(id: number, userInfo: UserInfoDto) {
+    const user = await this.userRepo.findUserEntityById(id);
+
+    if (!user) throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+
+    const role = await this.roleRepo.getRoleById(userInfo.role);
+    await this.userRepo.updateUser(id, {
+      name: userInfo.name,
+      surname: userInfo.surname,
+      role,
+      avatar: userInfo.avatar,
+    });
+
+    const updatedUser = await this.userRepo.findUserById(id);
+
+    return new User(updatedUser);
   }
 
   public async createUser(userData: UserDataDto) {
@@ -40,6 +60,12 @@ export class UserService {
     });
 
     return new User(user);
+  }
+
+  public async getRoles() {
+    const roles = await this.roleRepo.getAllRoles();
+
+    return roles.map((role) => new Role(role));
   }
 
   public async getUserByData({ username, password }: LoginUserDataDto) {

@@ -37,6 +37,11 @@ export class UserEntity {
   })
   public email: string;
 
+  @Column({
+    nullable: true,
+  })
+  public avatar: string;
+
   @ManyToOne(() => RoleEntity)
   @JoinColumn({
     name: 'role_id',

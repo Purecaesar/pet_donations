@@ -32,7 +32,7 @@ export class KennelCrowdfundingEntity {
   public description: string;
 
   @Column({
-    type: 'date',
+    type: 'timestamp without time zone',
     default: () => 'now()',
   })
   public date: string;

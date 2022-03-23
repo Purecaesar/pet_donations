@@ -8,6 +8,9 @@ export class CrowdfundingRepository {
 
   public getAllCrowdfunding() {
     return this.repo.find({
+      order: {
+        date: 'DESC',
+      },
       relations: ['kennel'],
     });
   }

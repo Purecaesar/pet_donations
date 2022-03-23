@@ -13,12 +13,20 @@ export class KennelRepository {
   }
 
   public findKennelById(id: number) {
-    return this.repo.find({
+    return this.repo.findOne({
       where: {
         id,
       },
-      relations: ['user', 'news', 'location', 'paymentDetails', 'crowdfunding'],
+      relations: ['user', 'user.role','news', 'location', 'paymentDetails', 'crowdfunding'],
     });
+  }
+
+  public updateKennel(id: number, kennel: Partial<KennelEntity>) {
+    return this.repo.update({ id }, kennel);
+  }
+
+  public createKennel(kennel: Partial<KennelEntity>) {
+    return this.repo.save(kennel);
   }
 
   private get repo() {

@@ -35,9 +35,18 @@ export class ContentComponent {
 
   public onLogout() {
     this.userService.logout();
+    void this.router.navigate(['news']);
   }
 
   public onNavigate(route: string[]) {
     void this.router.navigate(route);
+  }
+
+  public onUserProfileClick() {
+    void this.router.navigate(['user-profile']);
+  }
+
+  public onEditKennelClick() {
+    void this.router.navigate(['kennel-info']);
   }
 }

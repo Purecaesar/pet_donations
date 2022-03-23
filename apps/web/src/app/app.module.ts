@@ -9,6 +9,7 @@ import { WebEndpointsModule } from '@pet-donations/web/endpoints';
 import { environment } from '../environments/environment';
 import { ROUTER_CONFIG } from '../configs/router.config';
 import { USER_INITIALIZER } from '../initializers/user-initializer.provider';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { USER_INITIALIZER } from '../initializers/user-initializer.provider';
     }),
     RouterAppModule,
     WebEndpointsModule.forRoot(`${environment.apiDomain}/api`),
+    MatSelectModule,
   ],
   providers: [USER_INITIALIZER],
   bootstrap: [AppComponent],

@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import {LoginUserDataDto, User, UserDataDto} from '@pet-donations/interfaces';
+import {
+  LoginUserDataDto,
+  Role,
+  User,
+  UserDataDto,
+  UserInfoDto,
+} from '@pet-donations/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -13,5 +19,13 @@ export class UserApiService {
 
   public loginUser(userData: LoginUserDataDto): Observable<User> {
     return this.api.post('users/login', userData);
+  }
+
+  public getRoles(): Observable<Role[]> {
+    return this.api.get('users/roles');
+  }
+
+  public updateUserInfo(id: number, userInfo: UserInfoDto): Observable<User> {
+    return this.api.post(`users/${id}`, userInfo);
   }
 }

@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Create Kennel</h2>
+<mat-form-field>
+  <mat-label>Kennel name</mat-label>
+  <input matInput [formControl]="kennelName" />
+</mat-form-field>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">Close</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="kennelName.invalid"
+    [mat-dialog-close]="kennelName.value"
+  >
+    Create
+  </button>
+</mat-dialog-actions>

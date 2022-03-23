@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserApiService } from '@pet-donations/web/endpoints';
 import { LoginForm } from '../models/login-form.interface';
 import { BehaviorSubject, tap } from 'rxjs';
-import { User } from '@pet-donations/interfaces';
+import {User, UserInfoDto} from '@pet-donations/interfaces';
 import { RegistrationForm } from '../models/registration-form.interface';
 
 @Injectable()
@@ -23,6 +23,10 @@ export class UserService {
     const userData = JSON.parse(storedData);
 
     return this.login(userData);
+  }
+
+  public getUser() {
+    return this.userSubject$.getValue();
   }
 
   public checkActions(action: string) {
@@ -53,5 +57,13 @@ export class UserService {
     localStorage.removeItem('userData');
 
     this.userSubject$.next(null);
+  }
+
+  public changeUserInfo({ name, surname, role, avatar }: UserInfoDto) {
+    const userId = this.userSubject$.getValue()?.id;
+    if (!userId) return;
+
+    return this.userApi.updateUserInfo(userId, {  name, surname, role, avatar  })
+      .pipe(tap(user => this.userSubject$.next(user)));
   }
 }

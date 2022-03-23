@@ -1,4 +1,4 @@
-import { SimpleEntity } from '../interfaces/simple-entity.interface';
+import { SimpleEntity } from './simple-entity.class';
 
 export interface NewsData {
   id: number;

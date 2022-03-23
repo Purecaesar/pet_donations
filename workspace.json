@@ -12,7 +12,9 @@
     "web-content": "libs/web/content",
     "web-crowdfunding": "libs/web/crowdfunding",
     "web-endpoints": "libs/web/endpoints",
+    "web-kennel-info": "libs/web/kennel-info",
     "web-news": "libs/web/news",
-    "web-user": "libs/web/user"
+    "web-user": "libs/web/user",
+    "web-user-profile": "libs/web/user-profile"
   }
 }

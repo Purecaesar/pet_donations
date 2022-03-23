@@ -19,6 +19,10 @@ export class ApiService {
     return this.httpClient.post<T>(`${this.apiDomain}/${url}`, body, options);
   }
 
+  public patch<T>(url: string, body: any, options?: RequestOptions) {
+    return this.httpClient.patch<T>(`${this.apiDomain}/${url}`, body, options);
+  }
+
   public delete<T>(url: string, options?: RequestOptions) {
     return this.httpClient.delete<T>(`${this.apiDomain}/${url}`, options);
   }

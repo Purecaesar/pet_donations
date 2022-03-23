@@ -1,4 +1,5 @@
 <pd-crowdfunding-card
+  class="crowdfunding-card"
   *ngFor="let cf of crowdfunding$ | async"
   [crowdfunding]="cf"
   (donate)="onDonate($event)"
