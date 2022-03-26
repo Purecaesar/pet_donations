@@ -12,4 +12,6 @@ export * from './lib/dto/login-user-data.dto';
 export * from './lib/dto/donate-data.dto';
 export * from './lib/dto/user-info.dto';
 export * from './lib/dto/create-kennel.dto';
+export * from './lib/dto/publish-news.dto';
 export * from './lib/dto/update-kennel.dto';
+export * from './lib/dto/create-crowdfunding.dto';

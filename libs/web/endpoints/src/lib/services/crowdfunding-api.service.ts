@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import { Crowdfunding } from '@pet-donations/interfaces';
+import {CreateCrowdfundingDto} from "@pet-donations/interfaces";
 
 @Injectable()
 export class CrowdfundingApiService {
@@ -13,5 +14,9 @@ export class CrowdfundingApiService {
 
   public donate(id: number, amount: number) {
     return this.api.post(`crowdfunding/${id}/donate`, { donateAmount: amount });
+  }
+
+  public publishCrowdfunding(data: CreateCrowdfundingDto) {
+    return this.api.post<Crowdfunding>('crowdfunding', data);
   }
 }

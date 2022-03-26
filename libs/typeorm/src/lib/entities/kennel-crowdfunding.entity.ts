@@ -20,6 +20,7 @@ export class KennelCrowdfundingEntity {
 
   @Column({
     type: 'bigint',
+    default: () => '0',
   })
   public founded: number;
 

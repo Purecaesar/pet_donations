@@ -31,8 +31,8 @@ export class AvailableActionsDirective implements OnDestroy {
   }
 
   private insertTemplate() {
+    this.vcr.clear();
     if (!this.userService.checkActions(this.action)) {
-      this.vcr.clear();
       this.cdr.markForCheck();
       return;
     }

@@ -19,6 +19,10 @@ export class CrowdfundingRepository {
     return this.repo.update({ id }, { founded: amount });
   }
 
+  public createCrowdfunding(data: Partial<KennelCrowdfundingEntity>) {
+    return this.repo.save(data);
+  }
+
   public findOneById(id: number) {
     return this.repo.findOne(id);
   }

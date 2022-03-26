@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Publish news</h2>
+<mat-dialog-content>
+  <form class="main-form" [formGroup]="form">
+    <mat-form-field>
+      <mat-label>News title</mat-label>
+      <input matInput formControlName="header" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    [mat-dialog-close]="form.getRawValue()"
+  >
+    Publish
+  </button>
+</mat-dialog-actions>

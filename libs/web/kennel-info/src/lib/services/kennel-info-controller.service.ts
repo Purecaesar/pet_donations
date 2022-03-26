@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {filter, merge, pluck, Subject, switchMap, tap} from 'rxjs';
+import { filter, merge, pluck, Subject, switchMap, tap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateKennelDialogComponent } from '../components/create-kennel-dialog/create-kennel-dialog.component';
-import { KennelApiService } from '@pet-donations/web/endpoints';
+import {
+  CrowdfundingApiService,
+  KennelApiService,
+  NewsApiService,
+} from '@pet-donations/web/endpoints';
 import { Kennel, PaymentDetails } from '@pet-donations/interfaces';
 import { UserService } from '@pet-donations/web/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PublishNewsDialogComponent } from '../components/publish-news-dialog/publish-news-dialog.component';
+import { PublishCrowdfundingDialogComponent } from '../components/publish-crowdfunding-dialog/publish-crowdfunding-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class KennelInfoControllerService {
@@ -30,7 +37,10 @@ export class KennelInfoControllerService {
     private readonly ar: ActivatedRoute,
     private readonly dialog: MatDialog,
     private readonly kennelApi: KennelApiService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly newsApi: NewsApiService,
+    private readonly crowdfundingApi: CrowdfundingApiService,
+    private readonly snackbar: MatSnackBar
   ) {}
 
   public addLocation(city?: string, address?: string) {
@@ -91,7 +101,7 @@ export class KennelInfoControllerService {
         switchMap((kennelName) =>
           this.kennelApi.createKennel({ kennelName, userId: user!.id })
         ),
-        tap(kennel => (this.kennelId = kennel.id))
+        tap((kennel) => (this.kennelId = kennel.id))
       )
       .subscribe();
   }
@@ -99,14 +109,64 @@ export class KennelInfoControllerService {
   public saveKennelData() {
     const rawFormData = this.form.getRawValue();
 
-    this.kennelApi.updateKennel(this.kennelId as number, rawFormData)
+    this.kennelApi
+      .updateKennel(this.kennelId as number, rawFormData)
+      .pipe(tap((kennel) => this.updatedKennel$.next(kennel)))
+      .subscribe({
+        next: () =>
+          this.snackbar.open('Your info has been saved!', '', {
+            duration: 2000,
+          }),
+        error: () =>
+          this.snackbar.open('Something went wrong :(', '', {
+            duration: 2000,
+          }),
+      });
+  }
+
+  public publishCrowdfunding() {
+    this.dialog
+      .open(PublishCrowdfundingDialogComponent)
+      .afterClosed()
       .pipe(
-        tap(kennel => this.updatedKennel$.next(kennel))
-      ).subscribe();
+        filter(Boolean),
+        switchMap((crowdfundingInfo) =>
+          this.crowdfundingApi.publishCrowdfunding({
+            ...crowdfundingInfo,
+            kennelId: this.kennelId,
+          })
+        )
+      )
+      .subscribe({
+        next: () =>
+          this.snackbar.open('Your crowdfunding is published!', '', {
+            duration: 2000,
+          }),
+        error: () =>
+          this.snackbar.open('Something went wrong :(', '', { duration: 2000 }),
+      });
+  }
+
+  public publishNews() {
+    this.dialog
+      .open(PublishNewsDialogComponent)
+      .afterClosed()
+      .pipe(
+        filter(Boolean),
+        switchMap((newsInfo) =>
+          this.newsApi.publishNews({ ...newsInfo, kennelId: this.kennelId })
+        )
+      )
+      .subscribe({
+        next: () =>
+          this.snackbar.open('Your news is published!', '', { duration: 2000 }),
+        error: () =>
+          this.snackbar.open('Something went wrong :(', '', { duration: 2000 }),
+      });
   }
 
   private setUpKennel(kennel: Kennel) {
-    ['name', 'avatarUrl', 'description'].forEach(fieldName => {
+    ['name', 'avatarUrl', 'description'].forEach((fieldName) => {
       this.form.get(fieldName)?.setValue(kennel[fieldName as keyof Kennel]);
     });
 

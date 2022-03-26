@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { pluck, Subscription } from 'rxjs';
 import { Role, User } from '@pet-donations/interfaces';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class UserProfileControllerService implements OnDestroy {
@@ -23,7 +24,8 @@ export class UserProfileControllerService implements OnDestroy {
 
   constructor(
     private readonly userService: UserService,
-    private readonly ar: ActivatedRoute
+    private readonly ar: ActivatedRoute,
+    private readonly snackbar: MatSnackBar
   ) {
     this.subs.add(
       this.user$.subscribe({
@@ -37,7 +39,14 @@ export class UserProfileControllerService implements OnDestroy {
 
     this.userService
       .changeUserInfo({ name, surname, role, avatar: avatarUrl })
-      ?.subscribe();
+      ?.subscribe({
+        next: () =>
+          this.snackbar.open('Your info has been saved!', '', {
+            duration: 2000,
+          }),
+        error: () =>
+          this.snackbar.open('Something went wrong :(', '', { duration: 2000 }),
+      });
   }
 
   public resetFormData() {

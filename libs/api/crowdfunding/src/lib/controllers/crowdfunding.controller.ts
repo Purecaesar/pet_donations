@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CrowdfundingService } from '../services/crowdfunding.service';
 import { DonateDataDto } from '@pet-donations/interfaces';
+import { CreateCrowdfundingDto } from '@pet-donations/interfaces';
 
 @Controller('crowdfunding')
 export class CrowdfundingController {
@@ -14,5 +15,10 @@ export class CrowdfundingController {
   @Post(':id/donate')
   public donate(@Body() donateData: DonateDataDto, @Param('id') id: number) {
     return this.crowdfundingService.donate(donateData, id);
+  }
+
+  @Post()
+  public publishCrowdfunding(@Body() crowdfunding: CreateCrowdfundingDto) {
+    return this.crowdfundingService.publishCrowdfunding(crowdfunding);
   }
 }

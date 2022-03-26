@@ -24,6 +24,10 @@ export class NewsRepository {
     });
   }
 
+  public createNews(news: Partial<NewsEntity>) {
+    return this.repo.save(news);
+  }
+
   private get repo() {
     return this.connection.getRepository(NewsEntity);
   }

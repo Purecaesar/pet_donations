@@ -7,9 +7,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateKennelDialogComponent } from './components/create-kennel-dialog/create-kennel-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {ReactiveFormsModule} from "@angular/forms";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PublishNewsDialogComponent } from './components/publish-news-dialog/publish-news-dialog.component';
+import {
+  PublishCrowdfundingDialogComponent
+} from "./components/publish-crowdfunding-dialog/publish-crowdfunding-dialog.component";
 
 @NgModule({
   imports: [
@@ -23,6 +27,11 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatInputModule,
     ReactiveFormsModule,
   ],
-  declarations: [KennelInfoComponent, CreateKennelDialogComponent],
+  declarations: [
+    KennelInfoComponent,
+    CreateKennelDialogComponent,
+    PublishNewsDialogComponent,
+    PublishCrowdfundingDialogComponent,
+  ],
 })
 export class WebKennelInfoModule {}

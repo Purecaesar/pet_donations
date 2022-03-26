@@ -31,17 +31,6 @@ main {
   border-radius: 3px;
 }
 
-.main-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  mat-form-field {
-    min-width: 300px;
-  }
-}
-
 .photo {
   display: flex;
   align-items: center;

@@ -38,4 +38,12 @@ export class KennelInfoComponent {
   public onSave() {
     this.controller.saveKennelData();
   }
+
+  public onPublishNews() {
+    this.controller.publishNews();
+  }
+
+  public onCreateCrowdfunding() {
+    this.controller.publishCrowdfunding();
+  }
 }
