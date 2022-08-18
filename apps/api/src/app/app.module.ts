@@ -19,11 +19,11 @@ const APP_MODULES = [
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5555,
-      username: 'user',
-      password: 'user',
-      database: 'pet_donation',
+      host: process.env.POSTGRES_HOST,
+      port: parseInt(process.env.POSTGRES_PORT),
+      username: process.env.POSTGRES_USERNAME,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
       entities: getMetadataArgsStorage().tables.map((tbl) => tbl.target),
       synchronize: true,
     }),
